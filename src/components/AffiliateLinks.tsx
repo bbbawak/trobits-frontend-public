@@ -12,13 +12,13 @@ export const AffiliateLinks = () => {
   const ursimeFirstTimeTotal = (ursimeBaseCommission * ursimeFirstTimeBonus) / 100; // 0.5% for first-time
 
   return (
-    <div className="w-full bg-slate-900/50 py-1">
-      <div className="max-w-7xl mx-auto px-1 flex justify-center">
-        <div className="w-full max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-1 place-items-center">
+    <div className="w-full bg-slate-900/50 py-4">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="w-full max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
             {/* Printrendy Affiliate */}
-            <div className="bg-slate-800 rounded-lg p-1 shadow-lg border border-slate-700 md:col-span-1.5 w-full">
-              <div className="flex flex-col items-center gap-1">
+            <div className="bg-slate-800 rounded-lg p-4 shadow-lg border border-slate-700 md:col-span-3 w-full h-full">
+              <div className="flex flex-col items-center gap-3 h-full">
                 <a 
                   rel="sponsored"
                   href="https://printrendy.pxf.io/c/6232366/1453720/17020" 
@@ -31,7 +31,7 @@ export const AffiliateLinks = () => {
                     alt="Printrendy Online Sale - Get 3.75% commission on first-time purchases" 
                     width="235" 
                     height="300"
-                    className="rounded-lg w-full h-[300px] object-cover"
+                    className="rounded-lg w-full h-[230px] object-cover mb-[4px]"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                       e.currentTarget.nextElementSibling?.classList.remove('hidden');
@@ -48,9 +48,9 @@ export const AffiliateLinks = () => {
                   style={{ position: 'absolute', visibility: 'hidden' }} 
                   alt=""
                 />
-                <div className="text-center w-full">
-                  <h3 className="text-base font-semibold text-cyan-300">Online Sale</h3>
-                  <div className="bg-slate-700/50 p-1 rounded-lg">
+                <div className="text-center w-full mt-auto">
+                  <h3 className="text-base font-semibold text-cyan-300 mb-2">Online Sale</h3>
+                  <div className="bg-slate-700/50 p-3 rounded-lg">
                     <p className="text-sm text-slate-300">First-time Commission</p>
                     <p className="text-green-400 font-bold text-base">{printrendyFirstTimeTotal}%</p>
                   </div>
@@ -59,21 +59,21 @@ export const AffiliateLinks = () => {
             </div>
 
             {/* Gemini Affiliate */}
-            <div className="bg-slate-800 rounded-lg p-1 shadow-lg border border-slate-700 md:col-span-3 w-full">
-              <div className="flex flex-col items-center gap-1">
+            <div className="bg-slate-800 rounded-lg p-4 shadow-lg border border-slate-700 md:col-span-6 w-full h-full">
+              <div className="flex flex-col items-center gap-3 h-full">
                 <a 
                   rel="sponsored"
-                  href="https://gemini.sjv.io/c/6232366/2794807/11829" 
+                  href="https://gemini.sjv.io/c/6232366/1958119/11829" 
                   target="_top" 
-                  id="2794807"
+                  id="1958119"
                   className="block w-full relative"
                 >
                   <img 
-                    src="https://a.impactradius-go.com/display-ad/11829-2794807" 
+                    src="https://a.impactradius-go.com/display-ad/11829-1958119" 
                     alt="Gemini Exchange - Get $10 commission on first-time trades" 
-                    width="470" 
-                    height="300"
-                    className="rounded-lg w-full h-[300px] object-cover"
+                    width="1200" 
+                    height="675"
+                    className="rounded-lg w-full h-[207px] object-cover mb-[4px]"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                       e.currentTarget.nextElementSibling?.classList.remove('hidden');
@@ -86,13 +86,13 @@ export const AffiliateLinks = () => {
                 <img 
                   height="0" 
                   width="0" 
-                  src="https://imp.pxf.io/i/6232366/2794807/11829" 
+                  src="https://imp.pxf.io/i/6232366/1958119/11829" 
                   style={{ position: 'absolute', visibility: 'hidden' }} 
                   alt=""
                 />
-                <div className="text-center w-full">
-                  <h3 className="text-base font-semibold text-cyan-300">Gemini</h3>
-                  <div className="bg-slate-700/50 p-1 rounded-lg">
+                <div className="text-center w-full mt-auto">
+                  <h3 className="text-base font-semibold text-cyan-300 mb-2">Gemini</h3>
+                  <div className="bg-slate-700/50 p-3 rounded-lg">
                     <p className="text-sm text-slate-300">First-time Commission</p>
                     <p className="text-green-400 font-bold text-base">$10.00</p>
                   </div>
@@ -101,8 +101,8 @@ export const AffiliateLinks = () => {
             </div>
 
             {/* Ursime Affiliate */}
-            <div className="bg-slate-800 rounded-lg p-1 shadow-lg border border-slate-700 md:col-span-1.5 w-full">
-              <div className="flex flex-col items-center gap-1">
+            <div className="bg-slate-800 rounded-lg p-4 shadow-lg border border-slate-700 md:col-span-3 w-full h-full">
+              <div className="flex flex-col items-center gap-3 h-full">
                 <a 
                   rel="sponsored"
                   href="https://ursime.pxf.io/c/6232366/2889438/16384" 
@@ -115,7 +115,7 @@ export const AffiliateLinks = () => {
                     alt="Ursime Online Sale - Get 0.5% commission on first-time purchases" 
                     width="235" 
                     height="300"
-                    className="rounded-lg w-full h-[300px] object-cover"
+                    className="rounded-lg w-full h-[230px] object-cover mb-[4px]"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                       e.currentTarget.nextElementSibling?.classList.remove('hidden');
@@ -132,9 +132,9 @@ export const AffiliateLinks = () => {
                   style={{ position: 'absolute', visibility: 'hidden' }} 
                   alt=""
                 />
-                <div className="text-center w-full">
-                  <h3 className="text-base font-semibold text-cyan-300">Online Sale</h3>
-                  <div className="bg-slate-700/50 p-1 rounded-lg">
+                <div className="text-center w-full mt-auto">
+                  <h3 className="text-base font-semibold text-cyan-300 mb-2">Online Sale</h3>
+                  <div className="bg-slate-700/50 p-3 rounded-lg">
                     <p className="text-sm text-slate-300">First-time Commission</p>
                     <p className="text-green-400 font-bold text-base">{ursimeFirstTimeTotal}%</p>
                   </div>
