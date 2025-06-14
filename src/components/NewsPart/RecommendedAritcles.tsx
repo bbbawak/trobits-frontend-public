@@ -4,9 +4,13 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 import React, { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import NewsCard from "./NewsCard";
 import { ArrowRight, Sparkles, TrendingUp, Globe } from "lucide-react";
+import { useGetAllBlogsQuery } from "@/redux/features/api/articleApi";
+import { Article } from "@/app/(withCommonLayout)/articles/page";
+import Loading from "@/components/Shared/Loading";
+import HomeNewsCard from "./HomeNewsCard";
 
 interface CryptoArticle {
     id: string;
@@ -87,69 +91,18 @@ const AdBanner = ({ adClass }: { adClass: string }) => {
 };
 
 export default function RecommendedArticles() {
-    const [articles, setArticles] = useState<CryptoArticle[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const router = useRouter();
+    const { data: allBlogsData, isLoading: allBlogsDataLoading, error } = useGetAllBlogsQuery([]);
+    const [localArticles, setLocalArticles] = useState<Article[]>([]);
 
-    const pathName = usePathname();
-
-    // Fetch recommended crypto news articles
     useEffect(() => {
-        const fetchRecommendedArticles = async () => {
-            try {
-                setLoading(true);
-                console.log('Fetching recommended crypto news articles...');
+        if (allBlogsData?.data) {
+            setLocalArticles(allBlogsData.data);
+        }
+    }, [allBlogsData]);
 
-                // Fetch from our all-tickers API
-                const response = await fetch('/api/crypto-news/all-tickers?page=1&items_per_page=8');
-                const data = await response.json();
-
-                if (data.success && data.articles) {
-                    // Transform articles to match our interface
-                    const transformedArticles: CryptoArticle[] = data.articles.map((article: any) => ({
-                        id: article.news_url || `article-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-                        title: article.title || 'Untitled Article',
-                        text: article.text || '',
-                        content: article.text || '',
-                        source_name: article.source_name || 'Crypto News',
-                        date: article.date || new Date().toISOString(),
-                        createdAt: article.date || new Date().toISOString(),
-                        tickers: Array.isArray(article.tickers) ? article.tickers : [],
-                        news_url: article.news_url,
-                        image_url: article.image_url || article.image,
-                        image: article.image_url || article.image,
-                        sentiment: article.sentiment || 'neutral',
-                        type: 'crypto_news' as const
-                    }));
-
-                    setArticles(transformedArticles);
-                    setError(null);
-                } else {
-                    setError('Failed to load articles');
-                }
-            } catch (err) {
-                console.error('Error fetching recommended articles:', err);
-                setError('Failed to load articles');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchRecommendedArticles();
-    }, []);
-
-    // Handle loading state
-    if (loading) {
-        return (
-            <section className="relative py-16 bg-black">
-                <div className="container mx-auto px-6">
-                    <div className="text-center">
-                        <div className="w-16 h-16 border-4 border-gray-700 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
-                        <p className="text-gray-400">Loading recommended articles...</p>
-                    </div>
-                </div>
-            </section>
-        );
+    if (allBlogsDataLoading) {
+        return <Loading />;
     }
 
     return (
@@ -195,37 +148,18 @@ export default function RecommendedArticles() {
                                 <h3 className="text-2xl font-semibold text-gray-400">Unable to load articles</h3>
                                 <p className="text-gray-500">{error}</p>
                                 <button
-                                    onClick={() => window.location.reload()}
+                                    onClick={() => router.refresh()}
                                     className="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors"
                                 >
                                     Try Again
                                 </button>
                             </div>
                         </div>
-                    ) : articles.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
-                            {articles.map((article, index) => (
-                                <React.Fragment key={article.id}>
-                                    <div className="transform transition-all duration-500 hover:scale-[1.02]">
-                                        <NewsCard articleData={article} viewMode="grid" />
-                                    </div>
-
-                                    {/* Show an ad after every 4 articles */}
-                                    {(index + 1) % 4 === 0 && index < adClasses.length && (
-                                        <div className="col-span-full">
-                                            <AdBanner key={adClasses[Math.floor(index / 4)]} adClass={adClasses[Math.floor(index / 4)]} />
-                                        </div>
-                                    )}
-                                </React.Fragment>
-                            ))}
-                        </div>
                     ) : (
-                        <div className="text-center py-16">
-                            <div className="space-y-4">
-                                <TrendingUp className="w-16 h-16 text-gray-600 mx-auto" />
-                                <h3 className="text-2xl font-semibold text-gray-400">No articles available</h3>
-                                <p className="text-gray-500">Check back later for new crypto news</p>
-                            </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {localArticles.map((article) => (
+                                <HomeNewsCard key={article.id} articleData={article} />
+                            ))}
                         </div>
                     )}
                 </div>
@@ -266,7 +200,7 @@ export default function RecommendedArticles() {
                             {/* Stats */}
                             <div className="flex items-center justify-center gap-8 mt-8 pt-6 border-t border-gray-800/50">
                                 <div className="text-center">
-                                    <div className="text-2xl font-bold text-white">{articles.length}+</div>
+                                    <div className="text-2xl font-bold text-white">{localArticles.length}+</div>
                                     <div className="text-sm text-gray-400">Articles</div>
                                 </div>
                                 <div className="w-px h-8 bg-gray-800" />

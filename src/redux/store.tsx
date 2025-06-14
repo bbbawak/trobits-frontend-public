@@ -30,39 +30,21 @@
 
 
 // store/store.ts
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
+import { configureStore } from '@reduxjs/toolkit';
 import { baseApi } from './features/api/baseApi';
 import authReducer from './features/slices/authSlice';
 
-// Setup Persist Config
-const persistConfig = {
-    key: 'root',
-    storage: storage,
-    whitelist: [ 'auth' ],
-};
-
-// Combine Reducers
-const rootReducer = combineReducers({
-    auth: authReducer,
-    [ baseApi.reducerPath ]: baseApi.reducer,
-});
-
-// Persist Reducer
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-// Configure Store
+// Configure Store without persistence
 export const store = configureStore({
-    reducer: persistedReducer,
+    reducer: {
+        auth: authReducer,
+        [baseApi.reducerPath]: baseApi.reducer,
+    },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: false,
         }).concat(baseApi.middleware),
 });
-
-// Set up Persistor
-export const persistor = persistStore(store);
 
 // Types for Redux
 export type RootState = ReturnType<typeof store.getState>;

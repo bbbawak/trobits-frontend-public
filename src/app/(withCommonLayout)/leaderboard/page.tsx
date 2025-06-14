@@ -1,15 +1,7 @@
 "use client";
-import { setPaths } from "@/redux/features/slices/authSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 
 const LeaderBoard = () => {
-  const dispatch = useAppDispatch();
-  const previousPath = useAppSelector((state) => state.auth.previousPath);
-  const currentPath = useAppSelector((state) => state.auth.currentPath);
-  const pathName = usePathname();
-
   useEffect(() => {
     // Disable scrolling on the body
     document.body.style.overflow = "hidden";
@@ -42,20 +34,11 @@ const LeaderBoard = () => {
       document.body.style.overflow = "auto";
     };
   }, []);
-  
-  if (window) {
-    if (previousPath !== "/leaderboard" && currentPath === "/leaderboard") {
-      dispatch(setPaths(pathName));
-      window.location.reload();
-    }
-  }
+
   return (
-    <div className="flex justify-center min-h-screen bg-[#00000000] fixed mt-5  left-0 w-full h-full">
-      <div className="w-full max-w-[95rem] h-[85vh] p-5 bg-[#00000081] rounded-lg shadow-2xl">
-        <div className="tradingview-widget-container h-full">
-          <div className="tradingview-widget-container__widget w-full h-full rounded-lg overflow-hidden"></div>
-          <div className="tradingview-widget-copyright text-center text-white mt-2"></div>
-        </div>
+    <div className="min-h-screen bg-[#0000004d] p-4">
+      <div className="tradingview-widget-container">
+        <div className="tradingview-widget-container__widget"></div>
       </div>
     </div>
   );

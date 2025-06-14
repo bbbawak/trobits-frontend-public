@@ -1,95 +1,23 @@
-
-// "use client"
-// import { useGetUserByIdQuery } from '@/redux/features/api/authApi';
-// import { useAppSelector } from '@/redux/hooks';
-// import { useRouter } from 'next/navigation';
-// import { ReactNode, useEffect, useState } from 'react';
-// import toast from 'react-hot-toast';
-// import { IUser } from '../Cryptohub/Types';
-
-// const AuthGuard = ({ children }: { children: ReactNode }) => {
-//     const router = useRouter();
-//     const user: IUser = useAppSelector((state) => state.auth.user);
-//     const { data: userFromDb, isLoading: userFromDbLoading } = useGetUserByIdQuery(user?.id || null);
-//     const [ toastShown, setToastShown ] = useState(false);
-
-//     useEffect(() => {
-
-//         if (!user && !toastShown) {
-//             toast.error("Please Login First!");
-//             setToastShown(true);
-//             router.push("/auth/login");
-//             return;
-//         }
-//     }, [ user, router, toastShown ]);
-
-//     if (userFromDbLoading) return null;
-//     if (!user || !userFromDb && !toastShown) {
-//         toast.error("Please Login First!");
-//         setToastShown(true);
-//         router.push("/auth/login");
-//         return;
-//     }
-
-//     if (!user) {
-//         return null;
-//     }
-//     if ((userFromDb as { data: { isDeleted: boolean } }).data.isDeleted) {
-//         toast.error("user is blocked");
-//         setToastShown(true);
-//         router.push("/auth/login");
-//         return;
-//     }
-
-//     return <div>{children}</div>;
-// };
-
-// export default AuthGuard;
-
-
 "use client"
 import { useGetUserByIdQuery } from '@/redux/features/api/authApi';
 import { useAppSelector } from '@/redux/hooks';
-import { useRouter } from 'next/navigation';
-import { ReactNode, useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
+import { ReactNode } from 'react';
 import { IUser } from '../Cryptohub/Types';
 
-const AuthGuard = ({ children }: { children: ReactNode }) => {
-    const router = useRouter();
-    const user: IUser = useAppSelector((state) => state.auth.user);
-    const { data: userFromDb, isLoading: userFromDbLoading } = useGetUserByIdQuery(user?.id || null, { skip: !user?.id });
-    const [ toastShown, setToastShown ] = useState(false);
+interface AuthGuardProps {
+    children: ReactNode;
+    fallback?: ReactNode;
+    requireAuth?: boolean;
+}
 
-    useEffect(() => {
-        if (!user && !toastShown) {
-            toast.error("Please Login First!");
-            setToastShown(true);
-            router.push("/auth/login");
-        }
-    }, [ user, router, toastShown ]);
-
-    if (userFromDbLoading) return null;
-
-    if (!user || (!userFromDb && !toastShown)) {
-        if (!toastShown) {
-            toast.error("Please Login First!");
-            setToastShown(true);
-            router.push("/auth/login");
-        }
-        return null;
+const AuthGuard = ({ children, fallback, requireAuth = false }: AuthGuardProps) => {
+    // If authentication is not required, render children
+    if (!requireAuth) {
+        return <>{children}</>;
     }
 
-    if (userFromDb && (userFromDb as { data: { isDeleted: boolean } }).data.isDeleted) {
-        if (!toastShown) {
-            toast.error("User is blocked");
-            setToastShown(true);
-            router.push("/auth/login");
-        }
-        return null;
-    }
-
-    return <div>{children}</div>;
+    // For protected routes, show fallback or children
+    return fallback ? <>{fallback}</> : <>{children}</>;
 };
 
 export default AuthGuard;

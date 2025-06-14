@@ -19,10 +19,6 @@ const useSessionStorage = (key: string) => {
       let parsedData = existingData ? JSON.parse(existingData) : {};
       parsedData = { ...parsedData, ...newData };
       sessionStorage.setItem(key, JSON.stringify(parsedData));
-
-      // Dispatch a custom event after updating session storage
-      const event = new Event("sessionStorageUpdated");
-      window.dispatchEvent(event);
     }
   };
 
@@ -41,20 +37,6 @@ const useSessionStorage = (key: string) => {
 
   useEffect(() => {
     handleGetSessionStorage(); // Retrieve data on component mount
-
-    const onSessionStorageUpdated = () => {
-      handleGetSessionStorage();
-    };
-
-    window.addEventListener("sessionStorageUpdated", onSessionStorageUpdated);
-
-    // Cleanup listener on component unmount
-    return () => {
-      window.removeEventListener(
-        "sessionStorageUpdated",
-        onSessionStorageUpdated
-      );
-    };
   }, [key]);
 
   return [storedData, handleUpdateSessionStorage];

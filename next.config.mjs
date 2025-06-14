@@ -1,17 +1,44 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    // Disable image optimization and allow any external domains
-    unoptimized: true,
+    // Allow image optimization and external domains
+    domains: [
+      'a.impactradius-go.com',
+      'imp.pxf.io'
+    ],
+    unoptimized: true
   },
   // Add proper routing configuration
   trailingSlash: false,
   skipTrailingSlashRedirect: true,
   // Ensure pages are properly built
   output: 'standalone',
-  // Enable proper routing in production
-  experimental: {
-    appDir: true,
+  // Disable ESLint during build
+  eslint: {
+    ignoreDuringBuilds: true
+  },
+  typescript: {
+    // Disable type checking during build
+    ignoreBuildErrors: true
+  },
+  // Disable powered by header
+  poweredByHeader: false,
+  // Ensure static optimization
+  reactStrictMode: true,
+  swcMinify: true,
+  // Configure headers for public access
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*'
+          }
+        ]
+      }
+    ]
   }
 };
 

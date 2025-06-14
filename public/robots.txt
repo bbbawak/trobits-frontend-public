@@ -1,0 +1,10 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://trobits-frontend-public-5mki35zkd-bishops-projects-f06945f9.vercel.app/sitemap.xml
+
+# Disallow authentication pages
+Disallow: /auth/
+Disallow: /cryptohub/myspot/ 

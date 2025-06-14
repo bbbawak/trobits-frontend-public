@@ -2,74 +2,59 @@
 		<!--	created with www.mysitemapgenerator.com	-->
 		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-	<loc>https://trobits.com/</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.2</priority>
-</url>
-<url>
-	<loc>https://trobits.com/articles</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.1</priority>
-</url>
-<url>
-	<loc>https://trobits.com/aboutus</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
+	<loc>https://trobits-frontend-public-5mki35zkd-bishops-projects-f06945f9.vercel.app/</loc>
+	<changefreq>daily</changefreq>
 	<priority>1.0</priority>
 </url>
 <url>
-	<loc>https://trobits.com/privacypolicy</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.1</priority>
+	<loc>https://trobits-frontend-public-5mki35zkd-bishops-projects-f06945f9.vercel.app/articles</loc>
+	<changefreq>daily</changefreq>
+	<priority>0.9</priority>
 </url>
 <url>
-	<loc>https://trobits.com/cookiepolicy</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.1</priority>
+	<loc>https://trobits-frontend-public-5mki35zkd-bishops-projects-f06945f9.vercel.app/learn</loc>
+	<changefreq>weekly</changefreq>
+	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://trobits.com/disclaimer</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.1</priority>
+	<loc>https://trobits-frontend-public-5mki35zkd-bishops-projects-f06945f9.vercel.app/archive</loc>
+	<changefreq>weekly</changefreq>
+	<priority>0.8</priority>
 </url>
 <url>
-	<loc>https://trobits.com/contactUs</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.1</priority>
+	<loc>https://trobits-frontend-public-5mki35zkd-bishops-projects-f06945f9.vercel.app/leaderboard</loc>
+	<changefreq>daily</changefreq>
+	<priority>0.7</priority>
 </url>
 <url>
-	<loc>https://trobits.com/faq</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.1</priority>
+	<loc>https://trobits-frontend-public-5mki35zkd-bishops-projects-f06945f9.vercel.app/aboutus</loc>
+	<changefreq>monthly</changefreq>
+	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://trobits.com/cryptohub</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.1</priority>
+	<loc>https://trobits-frontend-public-5mki35zkd-bishops-projects-f06945f9.vercel.app/contactUs</loc>
+	<changefreq>monthly</changefreq>
+	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://trobits.com/learn</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.1</priority>
+	<loc>https://trobits-frontend-public-5mki35zkd-bishops-projects-f06945f9.vercel.app/faq</loc>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
 </url>
 <url>
-	<loc>https://trobits.com/leaderboard</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.1</priority>
+	<loc>https://trobits-frontend-public-5mki35zkd-bishops-projects-f06945f9.vercel.app/privacypolicy</loc>
+	<changefreq>monthly</changefreq>
+	<priority>0.4</priority>
 </url>
 <url>
-	<loc>https://trobits.com/howitworks</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.1</priority>
+	<loc>https://trobits-frontend-public-5mki35zkd-bishops-projects-f06945f9.vercel.app/cookiepolicy</loc>
+	<changefreq>monthly</changefreq>
+	<priority>0.4</priority>
 </url>
 <url>
-	<loc>https://trobits.com/auth/login</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.1</priority>
-</url>
-<url>
-	<loc>https://trobits.com/contact</loc>
-	<lastmod>2024-11-25T12:30:18+01:00</lastmod>
-	<priority>0.1</priority>
+	<loc>https://trobits-frontend-public-5mki35zkd-bishops-projects-f06945f9.vercel.app/disclaimer</loc>
+	<changefreq>monthly</changefreq>
+	<priority>0.4</priority>
 </url>
 <url>
 	<loc>https://trobits.com/cryptohub/cryptochat</loc>

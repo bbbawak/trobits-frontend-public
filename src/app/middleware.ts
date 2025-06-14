@@ -3,20 +3,24 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  // Ensure all routes work properly
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-url', request.url);
+  // Get the pathname
+  const pathname = request.nextUrl.pathname;
 
-  return NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
+  // Handle trailing slashes consistently
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    return NextResponse.redirect(
+      new URL(pathname.slice(0, -1), request.url)
+    );
+  }
+
+  // Allow all requests
+  return NextResponse.next();
 }
 
+// Only run middleware on specific paths
 export const config = {
   matcher: [
-    // Match all routes
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    // Only match dynamic routes that need trailing slash handling
+    '/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)',
   ],
 };

@@ -1,17 +1,18 @@
 import { ReactNode } from "react";
 import Navbar from "../shared/navbar/Navbar";
-// import Footer from "../shared/Footer/Footer";
+import Footer from "../shared/Footer/Footer";
 // import CryptoNavbar from "../shared/navbar/CryptoNavbar";
 // import Footer from "../shared/Footer/Footer";
-const WithCommonLayout = ({ children }: { children: ReactNode }) => {
+
+export default function WithCommonLayout({ children }: { children: ReactNode }) {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
       {/* <CryptoNavbar /> */}
-      {children}
-      {/* <Footer /> */}
+      <main className="flex-grow">
+        {children}
+      </main>
+      <Footer />
     </div>
   );
-};
-
-export default WithCommonLayout;
+}

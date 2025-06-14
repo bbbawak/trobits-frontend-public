@@ -6,8 +6,8 @@ const Redirect = () => {
     const router = useRouter();
 
     useEffect(() => {
-        router.push("/cryptohub/cryptochat");
-    }, [ router ]);
+        router.replace("/cryptohub/feed");
+    }, [router]);
 
     return null;
 }
