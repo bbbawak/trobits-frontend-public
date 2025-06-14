@@ -1,22 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// import { NextResponse } from "next/server";
-// import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-// export function middleware(req: NextRequest) {
-// const token = req.cookies.get("accessToken");
+export function middleware(request: NextRequest) {
+  // Ensure all routes work properly
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-url', request.url);
 
-// if (token && req.nextUrl.pathname === "/") {
-//   return NextResponse.redirect(new URL("/dashboard", req.url));
-// } else if (!token && req.nextUrl.pathname.startsWith("/dashboard")) {
-//   return NextResponse.redirect(new URL("/", req.url));
-// }
-// if (!token && req.nextUrl.pathname.startsWith("/dashboard")) {
-//   return NextResponse.redirect(new URL("/", req.url));
-//  }
+  return NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
+}
 
-//   return NextResponse.next();
-// }
-
-// export const config = {
-//   matcher: ["/", "/dashboard/:path*"],
-// };
+export const config = {
+  matcher: [
+    // Match all routes
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
+};
